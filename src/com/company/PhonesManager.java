@@ -35,13 +35,30 @@ public class PhonesManager implements Serializable {
 
         System.out.println("Сохранение совершено успешно!");
     }
-    void loadToTxtFilePhone(String filename) throws IOException, ClassNotFoundException {
-        FileInputStream fileInputStream = new FileInputStream(filename);
+
+    void loadToTxtFilePhone(String filename, ArrayList<Phone> phones) throws IOException, ClassNotFoundException {
+       /* FileInputStream fileInputStream = new FileInputStream(filename);
         ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
         ArrayList<Phone> clubs = (ArrayList<Phone>) objectInputStream.readObject();
-        objectInputStream.close();
+        objectInputStream.close();*/
+
+        FileWriter fileWriter = new FileWriter(filename);
+        BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+        bufferedWriter.write(phones.size());
+        bufferedWriter.newLine();
+        for (int i = 0; i < phones.size(); i++) {
+
+            bufferedWriter.write(Boolean.toString(phones.get(i).));
+            bufferedWriter.newLine();
+            bufferedWriter.write(phones.get(i).);
+            bufferedWriter.newLine();
+            bufferedWriter.write(phones.get(i).);
+            bufferedWriter.newLine();
+            bufferedWriter.write(operations.get(i).time.getDateOfOperation().toString());
+            bufferedWriter.newLine();
+        }
+
+        bufferedWriter.close();
+        fileWriter.close();
 
     }
-
-
-}
