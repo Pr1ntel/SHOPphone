@@ -6,12 +6,15 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class PhonesManager implements Serializable {
-
+public class PhonesManager {
     private ArrayList<Phone> phones;
 
     public PhonesManager() {
         phones = new ArrayList<>();
+    }
+
+    public PhonesManager(ArrayList<Phone> incomePhones) {
+        phones = new ArrayList<>(incomePhones);
     }
 
     public void addPhone(Phone phone) {
@@ -26,39 +29,57 @@ public class PhonesManager implements Serializable {
         return phones.get(index);
     }
 
-    void saveToTxtFilePhone(String filename) throws IOException {
+    public void loadPhonesFromTxtFile(String fileName) throws Exception {
+        FileReader fileReader = new FileReader(fileName);
+        BufferedReader bufferedReader = new BufferedReader(fileReader);
 
-        String temp = phones.toString();
-        PrintWriter printWriter = new PrintWriter(filename);
-        printWriter.write(temp);
-        printWriter.close();
+        int listSize = Integer.parseInt(bufferedReader.readLine());
 
-        System.out.println("Сохранение совершено успешно!");
+        phones = new ArrayList<>();
+
+        for (int i = 0; i < listSize; i++) {
+            String model = bufferedReader.readLine();
+            int price = Integer.parseInt(bufferedReader.readLine());
+            int quantity = Integer.parseInt(bufferedReader.readLine());
+
+            phones.add(new Phone(model, price, quantity));
+        }
+
+        bufferedReader.close();
+        fileReader.close();
     }
 
-    void loadToTxtFilePhone(String filename, ArrayList<Phone> phones) throws IOException, ClassNotFoundException {
-       /* FileInputStream fileInputStream = new FileInputStream(filename);
-        ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-        ArrayList<Phone> clubs = (ArrayList<Phone>) objectInputStream.readObject();
-        objectInputStream.close();*/
-
-        FileWriter fileWriter = new FileWriter(filename);
+    public void savePhonesToTxtFile(String fileName) throws Exception {
+        FileWriter fileWriter = new FileWriter(fileName);
         BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-        bufferedWriter.write(phones.size());
-        bufferedWriter.newLine();
-        for (int i = 0; i < phones.size(); i++) {
 
-            bufferedWriter.write(Boolean.toString(phones.get(i).));
+        bufferedWriter.write(Integer.toString(phones.size()));
+        bufferedWriter.newLine();
+
+        for (int i = 0; i < phones.size(); i++) {
+            bufferedWriter.write(phones.get(i).getModel());
             bufferedWriter.newLine();
-            bufferedWriter.write(phones.get(i).);
+
+            bufferedWriter.write(Integer.toString(phones.get(i).getPrice()));
             bufferedWriter.newLine();
-            bufferedWriter.write(phones.get(i).);
-            bufferedWriter.newLine();
-            bufferedWriter.write(operations.get(i).time.getDateOfOperation().toString());
+
+            bufferedWriter.write(Integer.toString(phones.get(i).getQuantity()));
             bufferedWriter.newLine();
         }
 
         bufferedWriter.close();
         fileWriter.close();
-
     }
+
+    public static ArrayList<Phone> getListTestPhones(){
+        ArrayList<Phone> phones = new ArrayList<>();
+
+        phones.add(new Phone("Samsung", 20, 50));
+        phones.add(new Phone("Iphone", 15, 25));
+        phones.add(new Phone("Nokia", 30, 40));
+
+        return phones;
+    }
+
+
+}

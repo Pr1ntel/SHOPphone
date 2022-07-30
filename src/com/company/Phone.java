@@ -13,6 +13,18 @@ public class Phone {
     private int price;
     private int quantity;
 
+    public String getModel() {
+        return model;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
     public Phone(String model, int price, int quantity) {
         this.model = model;
         this.price = price;
@@ -21,11 +33,9 @@ public class Phone {
 
     @Override
     public String toString() {
-        return "Phone{" +
-                "model='" + model + '\'' +
-                ", price=" + price +
-                ", quantity=" + quantity +
-                '}';
+        return  model + ' ' +
+                 price +' ' +
+                 quantity;
     }
 
 

@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Main {
-    public static void main(String[] args) throws IOException, ClassNotFoundException {
+    public static void main(String[] args) throws Exception {
         PhonesManager phonesManager = new PhonesManager();
 
         //ArrayList<Phone> phones = new ArrayList<>();
@@ -30,7 +30,7 @@ public class Main {
                     System.out.println("2: Вывести список телефонов");
                     System.out.println("3: Сохранить список в файл");
                     System.out.println("4: Загрузить список из файла");
-                    int switchPoint = Util.inputInt("Выбрать пункт: ", 1, 4);
+                    int switchPoint = Util.inputInt("Выбрать пункт: ", 0, 4);
 
                     switch (switchPoint) {
                         case 0: {
@@ -54,11 +54,11 @@ public class Main {
                         }
                         break;
                         case 3: {
-                            phonesManager.saveToTxtFilePhone("SaveTxt");
+                          phonesManager.savePhonesToTxtFile("Phones.txt");
                         }
                         break;
                         case 4: {
-                            phonesManager.loadToTxtFilePhone(Util.inputString("Введите имя файла"));
+                           phonesManager.loadPhonesFromTxtFile("Phones.txt");
                         }
                         break;
                     }
