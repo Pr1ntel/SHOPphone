@@ -30,7 +30,10 @@ public class Main {
                     System.out.println("2: Вывести список телефонов");
                     System.out.println("3: Сохранить список в файл");
                     System.out.println("4: Загрузить список из файла");
-                    int switchPoint = Util.inputInt("Выбрать пункт: ", 0, 4);
+                    System.out.println("5. Сортировать телефоны по возрастанию цены");
+                    System.out.println("6. Сортировать телефоны по убыванию цены");
+                    System.out.println("7. Узнать кол-во всех телефонов");
+                    int switchPoint = Util.inputInt("Выбрать пункт: ", 0, 7);
 
                     switch (switchPoint) {
                         case 0: {
@@ -59,6 +62,18 @@ public class Main {
                         break;
                         case 4: {
                            phonesManager.loadPhonesFromTxtFile("Phones.txt");
+                        }
+                        break;
+                        case 5:{
+                            phonesManager.sortPhonesForOver();
+                        }
+                        break;
+                        case 6:{
+
+                        }
+                        break;
+                        case 7:{
+                            phonesManager.sumQantityPhones();
                         }
                         break;
                     }

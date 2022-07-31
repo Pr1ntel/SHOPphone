@@ -1,10 +1,8 @@
 package com.company;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class PhonesManager {
     private ArrayList<Phone> phones;
@@ -71,15 +69,26 @@ public class PhonesManager {
         fileWriter.close();
     }
 
-    public static ArrayList<Phone> getListTestPhones(){
-        ArrayList<Phone> phones = new ArrayList<>();
 
-        phones.add(new Phone("Samsung", 20, 50));
-        phones.add(new Phone("Iphone", 15, 25));
-        phones.add(new Phone("Nokia", 30, 40));
+    public void sortPhonesForOver() {
+        // List<Phone> phones = new ArrayList<>();
+        List sortedList = phones.stream()
+                .sorted(Comparator.comparingInt(Phone::getPrice))
+                .collect(Collectors.toList());
+        sortedList.forEach(System.out::println);
 
-        return phones;
     }
 
+    public void sortPhonesForUnder() {
+        List sortedList = phones.stream()
+                .sorted(Comparator.comparingInt(Phone::getPrice))
+                // ????????????????
+                .collect(Collectors.toList());
+        sortedList.forEach(System.out::println);
+    }
 
+    public void sumQantityPhones(){
+        Integer sumList = phones.stream().collect(Collectors.summingInt(Phone::getQuantity));
+        System.out.println(sumList);
+    }
 }
