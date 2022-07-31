@@ -80,15 +80,39 @@ public class PhonesManager {
     }
 
     public void sortPhonesForUnder() {
-        List sortedList = phones.stream()
-                .sorted(Comparator.comparingInt(Phone::getPrice))
-                // ????????????????
+        List <Phone> sortedList = phones.stream()
+                .sorted(Comparator.comparing(Phone::getPrice))
                 .collect(Collectors.toList());
         sortedList.forEach(System.out::println);
+
+    }
+
+    public void findModelPhones(){
+
+        boolean findPhone = phones.stream()
+
+                .noneMatch(phone -> phone.getModel().equals(Util.inputString("Введите название телефона")));
+        if (findPhone = false) {
+
+            System.out.println("Телефона нет!");
+
+        }else {
+            System.out.println("Телефон есть в таблице!");
+        }
     }
 
     public void sumQantityPhones(){
         Integer sumList = phones.stream().collect(Collectors.summingInt(Phone::getQuantity));
-        System.out.println(sumList);
+        System.out.println("Общее кол-во телефонов: " +sumList);
+    }
+    public void minPricePhone(){
+        phones.stream()
+                .min(Comparator.comparing(Phone::getPrice))
+                .ifPresent(System.out::println);
+    }
+    public void maxPricePhone(){
+        phones.stream()
+                .max(Comparator.comparing(Phone::getPrice))
+                .ifPresent(System.out::println);
     }
 }

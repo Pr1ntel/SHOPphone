@@ -33,7 +33,9 @@ public class Main {
                     System.out.println("5. Сортировать телефоны по возрастанию цены");
                     System.out.println("6. Сортировать телефоны по убыванию цены");
                     System.out.println("7. Узнать кол-во всех телефонов");
-                    int switchPoint = Util.inputInt("Выбрать пункт: ", 0, 7);
+                    System.out.println("8. Узнать максимальную цену");
+                    System.out.println("9. Узнать минимальную цену");
+                    int switchPoint = Util.inputInt("Выбрать пункт: ", 0, 9);
 
                     switch (switchPoint) {
                         case 0: {
@@ -57,38 +59,46 @@ public class Main {
                         }
                         break;
                         case 3: {
-                          phonesManager.savePhonesToTxtFile("Phones.txt");
+                            phonesManager.savePhonesToTxtFile("Phones.txt");
                         }
                         break;
                         case 4: {
-                           phonesManager.loadPhonesFromTxtFile("Phones.txt");
+                            phonesManager.loadPhonesFromTxtFile("Phones.txt");
                         }
                         break;
-                        case 5:{
+                        case 5: {
                             phonesManager.sortPhonesForOver();
                         }
                         break;
-                        case 6:{
-
+                        case 6: {
+                            phonesManager.sortPhonesForUnder();
                         }
                         break;
-                        case 7:{
+                        case 7: {
                             phonesManager.sumQantityPhones();
+                        }
+                        break;
+                        case 8: {
+                            phonesManager.maxPricePhone();
+                        }
+                        break;
+                        case 9: {
+                            phonesManager.minPricePhone();
                         }
                         break;
                     }
                 }
             }
+
+
+            // phones.add(phone);
+
+
+            //  for (int i = 0; i < phones.size(); i++) {
+            //   System.out.println(phones.get(i));
+            // }
         }
-
-
-        // phones.add(phone);
-
-
-        //  for (int i = 0; i < phones.size(); i++) {
-        //   System.out.println(phones.get(i));
-        // }
     }
+
+
 }
-
-

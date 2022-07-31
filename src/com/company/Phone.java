@@ -13,6 +13,10 @@ public class Phone {
     private int price;
     private int quantity;
 
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
     public String getModel() {
         return model;
     }
@@ -37,8 +41,6 @@ public class Phone {
                  price +' ' +
                  quantity;
     }
-
-
     }
 
 
