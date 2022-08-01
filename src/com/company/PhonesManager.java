@@ -73,7 +73,7 @@ public class PhonesManager {
     public void sortPhonesForOver() {
         // List<Phone> phones = new ArrayList<>();
         List sortedList = phones.stream()
-                .sorted(Comparator.comparingInt(Phone::getPrice))
+                .sorted(Comparator.comparing(Phone::getPrice))
                 .collect(Collectors.toList());
         sortedList.forEach(System.out::println);
 

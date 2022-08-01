@@ -1,16 +1,11 @@
 package com.company;
 
-import com.company.Phone;
-import com.company.PhonesManager;
-
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
+import java.util.*;
 
 public class Main {
+
     public static void main(String[] args) throws Exception {
-        PhonesManager phonesManager = new PhonesManager();
+     /*   PhonesManager phonesManager = new PhonesManager();
 
         //ArrayList<Phone> phones = new ArrayList<>();
         while (true) {
@@ -98,6 +93,38 @@ public class Main {
             //   System.out.println(phones.get(i));
             // }
         }
+    }
+
+8/
+      */
+        System.out.println(proverka("(ABC)+[2]-{11}"));  // - true
+        System.out.println(proverka("(ABC)+[2-{11}")); // - false
+        System.out.println(proverka("(ABC])+[2]-{11}")); // - false
+        System.out.println(proverka("(ABC)+[2]-{11")); // - false
+    }
+
+    private static boolean proverka(String input) {
+        Map<Character, Character> skobki = new HashMap<>();
+        skobki.put(')', '(');
+        skobki.put('}', '{');
+        skobki.put(']', '[');
+
+        Deque<Character> stack = new LinkedList<>();
+        for (char c : input.toCharArray()) {
+            if (skobki.containsValue(c)) {
+                stack.push(c);
+            } else if (skobki.containsKey(c)) {
+                if (stack.isEmpty() || stack.pop() != skobki.get(c)) {
+                    return false;
+                }
+            }
+        }
+        return stack.isEmpty();
+
+    }
+
+    public void printlnProveka() {
+
     }
 
 
