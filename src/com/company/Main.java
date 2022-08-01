@@ -99,8 +99,10 @@ public class Main {
       */
         System.out.println(proverka("(ABC)+[2]-{11}"));  // - true
         System.out.println(proverka("(ABC)+[2-{11}")); // - false
-        System.out.println(proverka("(ABC])+[2]-{11}")); // - false
+
         System.out.println(proverka("(ABC)+[2]-{11")); // - false
+        System.out.println(proverka("{3*(3+6})")); // - false
+        System.out.println(proverka("{8*(3-5)+[34-2]}")); // - true
     }
 
     private static boolean proverka(String input) {
